@@ -2,6 +2,7 @@ package Rhythm;
 
 public class Conductor {
 	private int bpm,crochet,offSet,songPostion,songSpeed;
+	Song song;
 	
 	public Conductor()
 	{

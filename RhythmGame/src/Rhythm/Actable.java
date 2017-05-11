@@ -1,5 +1,14 @@
 package Rhythm;
 
-public class Actable extends Conductor{
+public class Actable {
 
+	LocationRhythm loc;
+	
+	public Actable()
+	{
+		
+	}
+	
+	
+	
 }
