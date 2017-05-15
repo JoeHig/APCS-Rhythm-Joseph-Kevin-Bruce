@@ -1,4 +1,4 @@
-package Rhythm;
+package rhythm;
 
 public class LocationRhythm {
 

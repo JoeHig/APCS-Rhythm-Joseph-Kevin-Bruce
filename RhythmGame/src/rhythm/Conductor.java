@@ -1,4 +1,4 @@
-package Rhythm;
+package rhythm;
 
 public class Conductor {
 	private int bpm,crochet,offSet,songPostion,songSpeed;
