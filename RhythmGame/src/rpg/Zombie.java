@@ -1,5 +1,5 @@
 package rpg;
 
-public class Zombie {
+public class Zombie extends WorldEnemy {
 
 }

@@ -15,7 +15,7 @@ public class RGMain extends JFrame {
 	
 	public RGMain(String title) {
 		super(title);
-		setBounds(100, 100, 800, 600);
+		setBounds(100, 100, 800, 800);
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
 	    cardPanel = new JPanel();
@@ -24,8 +24,6 @@ public class RGMain extends JFrame {
 	    
 		WorldPanel panel1 = new WorldPanel(this);    
 	    BattlePanel panel2 = new BattlePanel(this);
-	    
-	    addKeyListener(panel2.getKeyHandler());
 	
 	    cardPanel.add(panel1,"1");
 	    cardPanel.add(panel2,"2");
@@ -46,3 +44,6 @@ public class RGMain extends JFrame {
 	}
   
 }
+
+
+

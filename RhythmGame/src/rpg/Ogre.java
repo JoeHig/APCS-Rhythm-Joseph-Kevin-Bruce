@@ -1,5 +1,5 @@
 package rpg;
 
-public class Ogre extends Enemy{
+public class Ogre extends WorldEnemy {
 
 }

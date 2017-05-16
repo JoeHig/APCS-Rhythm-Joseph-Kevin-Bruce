@@ -1,24 +1,30 @@
 package main;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+/**
+ * Handles keyboard input for rhythm part of the game.
+ * Based on Mr. Shelby's KeyHandler in AP Animation Demo.
+ *
+ */
 public class KeyHandler implements KeyListener {
 	
-	private ArrayList<Integer> keys;
+	private ArrayList<Integer> keysPressed;
 	
 	public KeyHandler() {
-		keys = new ArrayList<Integer>();
+		keysPressed = new ArrayList<Integer>();
 	}
 	
 	public void keyPressed(KeyEvent e) {
-		keys.add(e.getKeyCode());
+		keysPressed.add(e.getKeyCode());
 	}
 	
 	public void keyReleased(KeyEvent e) {
 		Integer code = e.getKeyCode();
-		while(keys.contains(code))
-			keys.remove(code);
+		while(keysPressed.contains(code))
+			keysPressed.remove(code);
 	}
 	
 	public void keyTyped(KeyEvent e) {
@@ -26,7 +32,7 @@ public class KeyHandler implements KeyListener {
 	}
 	
 	public boolean isPressed(int code) {
-		return keys.contains(code);
+		return keysPressed.contains(code);
 	}
 	
 	

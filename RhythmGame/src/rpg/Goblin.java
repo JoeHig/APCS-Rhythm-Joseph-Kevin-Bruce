@@ -1,5 +1,5 @@
 package rpg;
 
-public class Goblin extends Enemy{
+public class Goblin extends WorldEnemy {
 
 }
