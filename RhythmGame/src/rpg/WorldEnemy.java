@@ -2,16 +2,15 @@ package rpg;
 
 
 public class WorldEnemy extends Tile {
-	
-	
-	public WorldEnemy() { // Put here to remove compiler errors. should be removed once ogre, zombie, & goblin are done.
-		super("", 0, 0);
+
+	private int tileType;
+	public WorldEnemy(String fileName,int x, int y) {
+		super(fileName, x, y);
+
 	}
 	
-	
-	public WorldEnemy(int x, int y) {
-		super("mario.png", x, y);
-
+	public int getTileType(){
+		return 5;
 	}
 
 }

@@ -1,4 +1,4 @@
-package rhythm;
+package rpg;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,32 +11,23 @@ import main.RGMain;
 
 import java.util.*;
 
-public class BattlePanel extends JPanel implements Runnable,KeyListener {
+public class GameWonPanel extends JPanel implements Runnable {
 	public static final int DRAWING_WIDTH = 650;
 	public static final int DRAWING_HEIGHT = 650;
 
 	private Rectangle screenRect;
 
-	// private BattlePlayer scrub;
-	private ArrayList<Shape> obstacles;
-
 	// private KeyHandler keyControl;
 	private RGMain window;
 
-	public BattlePanel(RGMain w) {
+	public GameWonPanel(RGMain w) {
 		super();
 		this.window = w;
 
 		// keyControl = new KeyHandler();
 		setBackground(Color.CYAN);
 		screenRect = new Rectangle(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
-		obstacles = new ArrayList<Shape>();
-		obstacles.add(new Rectangle(200, 400, 400, 50));
-		obstacles.add(new Rectangle(0, 250, 100, 50));
-		obstacles.add(new Rectangle(700, 250, 100, 50));
-		obstacles.add(new Rectangle(375, 300, 50, 100));
-		obstacles.add(new Rectangle(300, 250, 200, 50));
-		// spawnNewMario();
+	
 		new Thread(this).start();
 	}
 
@@ -56,18 +47,14 @@ public class BattlePanel extends JPanel implements Runnable,KeyListener {
 		g2.scale(ratioX, ratioY);
 
 		g.setColor(new Color(205, 102, 29));
-		for (Shape s : obstacles) {
-			g2.fill(s);
-		}
+		
 		// scrub.draw(g2,this);
 
 		g2.setTransform(at);
 
 		// TODO Add any custom drawings here
 	}
-	public void switchToWorld() {
-		window.changePanel("1");
-	}
+
 
 	@Override
 	public void run() {
@@ -88,21 +75,6 @@ public class BattlePanel extends JPanel implements Runnable,KeyListener {
 
 	}
 
-	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_E) {
-			switchToWorld();
-		}
-	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
 
 }
