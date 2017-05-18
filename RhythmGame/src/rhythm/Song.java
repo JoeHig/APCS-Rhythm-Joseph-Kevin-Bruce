@@ -43,12 +43,16 @@ public class Song extends PApplet{
 	 
 	  try {
 		song = minim.loadFile(Tester.class.getResource("Sound3.mp3").toURI().toString());
-		song.play();
+		//song.play();
 	} catch (URISyntaxException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-	}
-	  */
+	} finally
+	  {
+		song.stop();
+	  }
+	  
+	*/
 	
 	
 	  //dataPath("game1.mp3")"F:\\Final AP\\AP CS Final\\data\\song1.wav"
