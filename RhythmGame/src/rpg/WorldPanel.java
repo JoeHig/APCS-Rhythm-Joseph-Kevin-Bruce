@@ -71,31 +71,36 @@ public class WorldPanel extends JPanel implements Runnable, KeyListener {
 	
 	
 	public void switchToBattle() {
-		window.changePanel("1");
+		window.changePanel("2");
 	}
 	
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			world.moveScreen(0);
+//			System.out.print('L');
+		} else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			world.moveScreen(1);
+//			System.out.print('R');
+		} else if (e.getKeyCode() == KeyEvent.VK_UP) {
+			world.moveScreen(2);
+//			System.out.print('U');
+		} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+			world.moveScreen(3);
+//			System.out.print('D');
+//		} else if (e.getKeyCode() == KeyEvent.VK_S) {
+//			this.switchToBattle();
+//			System.out.println("switch");
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getKeyCode() == KeyEvent.VK_LEFT)
-			world.moveScreen(0);
-		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-			world.moveScreen(1);
-		if (e.getKeyCode() == KeyEvent.VK_UP)
-			world.moveScreen(2);
-		if (e.getKeyCode() == KeyEvent.VK_DOWN)
-			world.moveScreen(3);
 	}
 
 

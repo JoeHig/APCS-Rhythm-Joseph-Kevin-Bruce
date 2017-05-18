@@ -2,6 +2,6 @@ package rpg;
 
 public class WallTile extends Tile {
 	public WallTile(int x, int y) {
-		super("wall.gif", x, y);
+		super("resources"+ System.getProperty("file.separator") +"wall.gif", x, y);
 	}
 }

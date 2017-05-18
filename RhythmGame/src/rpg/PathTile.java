@@ -2,7 +2,7 @@ package rpg;
 
 public class PathTile extends Tile {
 	public PathTile(int x, int y) {
-		super("path.gif", x, y);
+		super("resources"+ System.getProperty("file.separator") +"path.gif", x, y);
 	}
 
 }

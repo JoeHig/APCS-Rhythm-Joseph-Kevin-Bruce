@@ -27,9 +27,11 @@ public class RGMain extends JFrame {
 	
 	    cardPanel.add(panel1,"1");
 	    cardPanel.add(panel2,"2");
-	    
 	    add(cardPanel);
-	
+	    
+	    addKeyListener(panel1);
+	    addKeyListener(panel2.getKeyHandler());
+	    
 	    setVisible(true);
 	}
 
@@ -37,7 +39,7 @@ public class RGMain extends JFrame {
 	{
 		RGMain w = new RGMain("Rhythm World");
 	}
-  
+	
 	public void changePanel(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel,name);
 		requestFocus();
