@@ -30,7 +30,7 @@ public class SongThread extends Thread{
 	public SongThread(String name)
 	{
 		try{
-		file= new File(Tester.class.getResource(name).toURI());
+		file= new File(name);
 		fis = new FileInputStream(file);
 		bis = new BufferedInputStream(bis);
 		player= new Player(bis);

@@ -35,7 +35,7 @@ public class Song extends PApplet{
 	public void setup()
 	{
 	background(0,255,255);  
-	SongThread st = new SongThread("ThunderSound.mp3");
+	SongThread st = new SongThread("resources" + System.getProperty("file.separator") + "rainSound.mp3");
 	st.play();
 
 	/*

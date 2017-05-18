@@ -9,8 +9,6 @@ import processing.awt.PSurfaceAWT;
 public class Tester {
 
 	public static void main(String[] args) {
-		System.out.println("hello");
-
 		Song n= new Song();
 		
 		PSurfaceAWT surf = (PSurfaceAWT) n.getSurface();
@@ -22,8 +20,7 @@ public class Tester {
 		window.setResizable(true);
 		window.setMinimumSize(new Dimension(100,100));
 		window.setVisible(true);
-		//n.draw();
-		//n.setup();
+		
 	}
 	
 	
