@@ -1,3 +1,4 @@
+package rpg;
 
 import java.awt.*;
 import javax.swing.*;
