@@ -1,4 +1,4 @@
-
+package rpg;
 public class WallTile extends Tile {
 	/**
 	 * Represents the tile that the player can't walk on or onto
