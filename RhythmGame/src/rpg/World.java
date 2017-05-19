@@ -1,3 +1,5 @@
+package rpg;
+
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import java.io.BufferedReader;
