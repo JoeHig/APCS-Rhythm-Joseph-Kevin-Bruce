@@ -1,10 +1,9 @@
+package rpg;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import javax.swing.*;
-
-//import main.KeyHandler;
-//import main.RGMain;
 
 import java.util.*;
 
