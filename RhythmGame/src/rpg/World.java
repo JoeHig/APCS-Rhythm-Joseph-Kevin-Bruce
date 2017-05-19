@@ -1,5 +1,3 @@
-package rpg;
-
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 import java.io.BufferedReader;
@@ -18,10 +16,16 @@ public class World {
 	private WorldPanel wPanel;
 	private boolean inBattle;
 
+	/**
+	 * Creates the world of the free roaming part of the game
+	 * 
+	 * @param wPanel
+	 *            the panel which world is to be drawn on
+	 */
 	public World(WorldPanel wPanel) {
 		inBattle = false;
 		world = new Tile[WORLD_ROWS][WORLD_COLUMNS];
-		readData("resources" + System.getProperty("file.separator") + "world.txt");
+		readData("world.txt");
 		this.wPanel = wPanel;
 		for (int i = 0; i < world.length; i++) {
 			for (int j = 0; j < world[0].length; j++) {
@@ -35,6 +39,14 @@ public class World {
 
 	}
 
+	/**
+	 * This reads from a text file that tells the location of every tile in the
+	 * world
+	 * 
+	 * @param fileName
+	 *            the name of the file
+	 * @post the world is updated with the specified tiles
+	 */
 	private void readData(String fileName) {
 		File dataFile = new File(fileName);
 
@@ -99,11 +111,23 @@ public class World {
 		}
 	}
 
+	/**
+	 * Draws the world on a 13 tile by 13 tile screen with the player in the
+	 * middle of the screen
+	 * 
+	 * @param uses
+	 *            Graphics2D to draw the tile
+	 * @param uses
+	 *            ImageObserver for the image to be displayed
+	 * @post the screen is changed to show the area 6 tiles in each direction
+	 *       from the player
+	 */
 	public void drawWorld(Graphics2D g2, ImageObserver io) {
 		for (int i = 0; i < 13; i++) {
 			for (int j = 0; j < 13; j++) {
 				Tile t = null;
-				if (i + xWorld - 6 >= 0 && i + xWorld + 6 <= 50 && j + yWorld - 6 >= 0 && j + yWorld + 6 <= 50) {
+				if (i + xWorld - 6 >= 0 && i + xWorld + 7 <= WORLD_ROWS + 12 && j + yWorld - 6 >= 0
+						&& j + yWorld + 7 <= WORLD_COLUMNS + 12) {
 					t = world[i + xWorld - 6][j + yWorld - 6];
 				} else {
 					t = new ScreenTile(i, j);
@@ -114,6 +138,14 @@ public class World {
 		}
 	}
 
+	/**
+	 * Shifts the screen in a certain direction to show the area around the
+	 * player
+	 * 
+	 * @param dir
+	 *            the integer representation of the direction the screen is to
+	 *            be moved
+	 */
 	public void moveScreen(int dir) {
 		int x = 0;
 		int y = 0;
@@ -140,9 +172,11 @@ public class World {
 			wPanel.switchToBattle();
 			inBattle = true;
 		}
+		if (inBattle) {
+			inBattle = false;
+		}
 
 		if (checkExit(x, y) >= 0) {
-			System.out.println("Win");
 			wPanel.switchToWin();
 		}
 
@@ -165,8 +199,18 @@ public class World {
 
 	}
 
+	/**
+	 * This moves the players position in the world
+	 * 
+	 * @param dir
+	 *            the integer representation of the direction that the player
+	 *            moves
+	 * @param x
+	 *            the initial row that the player is in the world
+	 * @param y
+	 *            the initial column that the player is in the world
+	 */
 	public void moveWorldPlayer(int dir, int x, int y) {
-		// System.out.println(x + "," + y);
 		Tile t = world[x][y];
 		if (dir == 0 && x > 0) {
 			world[x - 1][y] = t;
@@ -186,6 +230,18 @@ public class World {
 		}
 	}
 
+	/**
+	 * Checks to see if the player's next move is the location of an enemy
+	 * 
+	 * @param dir
+	 *            the integer representation of the direction that the player
+	 *            moves
+	 * @param x
+	 *            the initial row that the player is in the world
+	 * @param y
+	 *            the initial column that the player is in the world
+	 * @return the direction that the enemy is from the player
+	 */
 	public int checkBattle(int x, int y) {
 		if (world[x - 1][y].getTileType() == 5) {
 			return 0;
@@ -199,6 +255,15 @@ public class World {
 		return -1;
 	}
 
+	/**
+	 * Checks to see if the player's next move is the exit
+	 * 
+	 * @param x
+	 *            the initial row that the player is in the world
+	 * @param y
+	 *            the initial column that the player is in the world
+	 * @return the direction that the door(exit) is from the player
+	 */
 	public int checkExit(int x, int y) {
 		if (world[x - 1][y].getTileType() == 3) {
 			return 0;

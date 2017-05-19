@@ -1,11 +1,30 @@
-package rpg;
-
 public class WorldPlayer extends Tile {
 
+	/**
+	 * The tile representation of the player in the world
+	 * 
+	 * @param x
+	 *            is the row that this player is to be placed at
+	 * @param y
+	 *            is the column that this player is to be placed at
+	 */
 	public WorldPlayer(int x, int y) {
-		super("resources" + System.getProperty("file.separator") + "worldplayer.gif", x, y);
+		super("worldplayer.gif", x, y);
 	}
 
+	/**
+	 * Checks to see if the player is able to move in the world
+	 * 
+	 * @param world
+	 *            the tile representation of the world
+	 * @param dir
+	 * @param x
+	 *            is the row that the player is to be placed at
+	 * @param y
+	 *            is the column that the player is to be placed at
+	 * @return true if the player can move to the specified location or false if
+	 *         it can't
+	 */
 	public boolean canMove(Tile[][] world, int dir, int x, int y) {
 
 		if (x < 1 || x > 38 || y < 1 || y > 38) {
@@ -42,7 +61,10 @@ public class WorldPlayer extends Tile {
 		return false;
 
 	}
-
+	/**
+	 * Returns the id of this tile type
+	 * @returns the integer 4 
+	 */
 	public int getTileType() {
 		return 4;
 	}
