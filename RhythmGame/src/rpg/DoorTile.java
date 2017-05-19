@@ -1,4 +1,4 @@
-
+package rpg;
 public class DoorTile extends Tile {
 
 	/**
