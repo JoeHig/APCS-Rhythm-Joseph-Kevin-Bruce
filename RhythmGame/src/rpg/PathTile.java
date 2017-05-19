@@ -1,4 +1,4 @@
-
+package rpg;
 public class PathTile extends Tile {
 	
 	/**
