@@ -1,3 +1,5 @@
+package rpg;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.*;
@@ -45,7 +47,7 @@ public class DrawableImage extends Rectangle2D.Double {
 	}
 
 	/**
-	 * 
+	 * Draws the this image 
 	 * @param g2
 	 * @param io
 	 */
