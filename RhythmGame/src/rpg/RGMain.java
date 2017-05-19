@@ -1,8 +1,7 @@
+package rpg;
+
 import javax.swing.*;
-
-//import rhythm.BattlePanel;
-//import rpg.WorldPanel;
-
+import rhythm.BattlePanel;
 import java.awt.*;
 
 public class RGMain extends JFrame {
