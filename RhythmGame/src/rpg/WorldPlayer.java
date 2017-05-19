@@ -1,3 +1,5 @@
+package rpg;
+
 public class WorldPlayer extends Tile {
 
 	/**
