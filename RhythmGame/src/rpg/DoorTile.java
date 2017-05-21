@@ -10,7 +10,7 @@ public class DoorTile extends Tile {
 	 *            is the column that this tiles is to be placed at
 	 */
 	public DoorTile(int x, int y) {
-		super("door.gif", x, y);
+		super("resources/door.gif", x, y);
 	}
 
 	/**

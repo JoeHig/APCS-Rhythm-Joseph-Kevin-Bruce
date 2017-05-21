@@ -10,7 +10,7 @@ public class Goblin extends WorldEnemy {
 	 *            is the column that this tiles is to be placed at
 	 */
 	public Goblin(int x, int y) {
-		super("goblin.gif", x, y);
+		super("resources/goblin.gif", x, y);
 	}
 
 }

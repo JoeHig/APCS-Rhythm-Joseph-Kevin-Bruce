@@ -10,7 +10,7 @@ public class Zombie extends WorldEnemy {
 	 *            is the column that this tiles is to be placed at
 	 */
 	public Zombie(int x, int y) {
-		super("zombie.gif", x, y);
+		super("resources/zombie.gif", x, y);
 	}
 
 }

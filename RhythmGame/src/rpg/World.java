@@ -27,7 +27,8 @@ public class World {
 	public World(WorldPanel wPanel) {
 		inBattle = false;
 		world = new Tile[WORLD_ROWS][WORLD_COLUMNS];
-		readData("world.txt");
+		readData("resources/world.txt");
+		
 		this.wPanel = wPanel;
 		for (int i = 0; i < world.length; i++) {
 			for (int j = 0; j < world[0].length; j++) {
@@ -38,8 +39,10 @@ public class World {
 				}
 			}
 		}
-
+		
 	}
+	
+	
 
 	/**
 	 * This reads from a text file that tells the location of every tile in the

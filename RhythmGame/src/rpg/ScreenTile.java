@@ -11,7 +11,7 @@ public class ScreenTile extends Tile {
 	 *            is the column that this tiles is to be placed at
 	 */
 	public ScreenTile(int x, int y) {
-		super("screentile.gif", x, y);
+		super("resources/screentile.gif", x, y);
 	}
 
 }

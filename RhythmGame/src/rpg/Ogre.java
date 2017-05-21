@@ -10,7 +10,7 @@ public class Ogre extends WorldEnemy {
 	 *            is the column that this tiles is to be placed at
 	 */
 	public Ogre(int x, int y) {
-		super("ogre.gif", x, y);
+		super("resources/ogre.gif", x, y);
 	}
 
 }

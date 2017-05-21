@@ -10,7 +10,7 @@ public class PathTile extends Tile {
 	 *            is the column that this tiles is to be placed at
 	 */
 	public PathTile(int x, int y) {
-		super("path.gif", x, y);
+		super("resources/path.gif", x, y);
 	}
 	/**
 	 * Returns the id of this tile type

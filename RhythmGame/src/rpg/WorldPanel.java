@@ -5,6 +5,7 @@ import java.awt.geom.AffineTransform;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import main.RGMain;
 
 public class WorldPanel extends JPanel implements Runnable, KeyListener {
 	public static final int DRAWING_WIDTH = 650;

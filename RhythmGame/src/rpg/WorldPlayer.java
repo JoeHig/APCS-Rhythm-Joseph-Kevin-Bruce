@@ -11,7 +11,7 @@ public class WorldPlayer extends Tile {
 	 *            is the column that this player is to be placed at
 	 */
 	public WorldPlayer(int x, int y) {
-		super("worldplayer.gif", x, y);
+		super("resources/worldplayer.gif", x, y);
 	}
 
 	/**

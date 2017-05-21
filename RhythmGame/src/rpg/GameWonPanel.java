@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import javax.swing.*;
 import java.util.*;
+import main.RGMain;
 
 public class GameWonPanel extends JPanel implements Runnable {
 	public static final int DRAWING_WIDTH = 650;

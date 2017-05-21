@@ -9,7 +9,7 @@ public class WallTile extends Tile {
 	 *            is the column that this tiles is to be placed at
 	 */
 	public WallTile(int x, int y) {
-		super("wall.gif", x, y);
+		super("resources/wall.gif", x, y);
 	}
 
 	/**
