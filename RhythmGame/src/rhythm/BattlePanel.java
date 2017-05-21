@@ -66,7 +66,7 @@ public class BattlePanel extends JPanel implements Runnable,KeyListener {
 		// TODO Add any custom drawings here
 	}
 	public void switchToWorld() {
-		window.changePanel("1");
+		window.changePanel("1", false);
 	}
 
 	@Override
