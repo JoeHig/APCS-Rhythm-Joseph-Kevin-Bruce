@@ -31,7 +31,7 @@ public class DrawableImage extends Rectangle2D.Double {
 	 * This represents anything that can be drawn on the screen
 	 * 
 	 * @param img
-	 *            an image file to be used
+	 *            the image file to be used
 	 * @param x
 	 *            position of the image along the x axis in pixels
 	 * @param y
@@ -47,9 +47,10 @@ public class DrawableImage extends Rectangle2D.Double {
 	}
 
 	/**
-	 * Draws the this image 
-	 * @param g2
-	 * @param io
+	 * Draws this image 
+	 * @param g2 renderer for two dimensional objects
+	 * @param io the image observer to be notified
+	 * @post the image is drawn with the given attributes
 	 */
 	public void draw(Graphics2D g2, ImageObserver io) {
 		g2.drawImage(image, (int) x, (int) y, (int) width, (int) height, io);
