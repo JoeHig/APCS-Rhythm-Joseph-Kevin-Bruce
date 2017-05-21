@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import javax.swing.*;
-
 import java.util.*;
 
 public class GameWonPanel extends JPanel implements Runnable {
