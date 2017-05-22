@@ -1,7 +1,9 @@
-package.main;
+package main;
+
 
 import javax.swing.*;
 import rhythm.BattlePanel;
+import rpg.GameWonPanel;
 import rpg.WorldPanel;
 
 import java.awt.*;

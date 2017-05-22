@@ -3,128 +3,25 @@ package rhythm;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.ImageObserver;
 import java.util.*;
 import main.MovingImage;
 
-public class BattlePlayer extends MovingImage {
+public class BattlePlayer extends Actable {
 
-	public static final int MARIO_WIDTH = 40;
-	public static final int MARIO_HEIGHT = 60;
-
-	private double xVelocity, yVelocity;
-	private boolean onASurface;
-	private double friction;
-	private double gravity;
-	private double jumpStrength;
-
-	public BattlePlayer(int x, int y) {
-		super("mario.png", x, y, MARIO_WIDTH, MARIO_HEIGHT);
-		xVelocity = 0;
-		yVelocity = 0;
-		onASurface = false;
-		gravity = 0.7;
-		friction = .85;
-		jumpStrength = 15;
-	}
-
-	// METHODS
-	public void walk(int dir) {
-		if (xVelocity <= 10 && xVelocity >= -10)
-			xVelocity += dir;
-	}
-
-	public void jump() {
-		if (onASurface)
-			yVelocity -= jumpStrength;
-	}
-
-	public void act(ArrayList<Shape> obstacles) {
-		double xCoord = getX();
-		double yCoord = getY();
-		double width = getWidth();
-		double height = getHeight();
-
-		// ***********Y AXIS***********
-
-		yVelocity += gravity; // GRAVITY
-		double yCoord2 = yCoord + yVelocity;
-
-		Rectangle2D.Double strechY = new Rectangle2D.Double(xCoord,Math.min(yCoord,yCoord2),width,height+Math.abs(yVelocity));
-
-		onASurface = false;
-
-		if (yVelocity > 0) {
-			Shape standingSurface = null;
-			for (Shape s : obstacles) {
-				if (s.intersects(strechY)) {
-					onASurface = true;
-					standingSurface = s;
-					yVelocity = 0;
-				}
-			}
-			if (standingSurface != null) {
-				Rectangle r = standingSurface.getBounds();
-				yCoord2 = r.getY()-height;
-			}
-		} else if (yVelocity < 0) {
-			Shape headSurface = null;
-			for (Shape s : obstacles) {
-				if (s.intersects(strechY)) {
-					headSurface = s;
-					yVelocity = 0;
-				}
-			}
-			if (headSurface != null) {
-				Rectangle r = headSurface.getBounds();
-				yCoord2 = r.getY()+r.getHeight();
-			}
+		public BattlePlayer(String file,int x,int y, int wid,int hig) {
+			super("resources" + System.getProperty("file.separator")+file,x,y,wid,hig);
+			// TODO Auto-generated constructor stub
 		}
-
-		if (Math.abs(yVelocity) < .2)
-			yVelocity = 0;
-
-		// ***********X AXIS***********
-
-
-		xVelocity *= friction;
-
-		double xCoord2 = xCoord + xVelocity;
-
-		Rectangle2D.Double strechX = new Rectangle2D.Double(Math.min(xCoord,xCoord2),yCoord2,width+Math.abs(xVelocity),height);
-
-		if (xVelocity > 0) {
-			Shape rightSurface = null;
-			for (Shape s : obstacles) {
-				if (s.intersects(strechX)) {
-					rightSurface = s;
-					xVelocity = 0;
-				}
-			}
-			if (rightSurface != null) {
-				Rectangle r = rightSurface.getBounds();
-				xCoord2 = r.getX()-width;
-			}
-		} else if (xVelocity < 0) {
-			Shape leftSurface = null;
-			for (Shape s : obstacles) {
-				if (s.intersects(strechX)) {
-					leftSurface = s;
-					xVelocity = 0;
-				}
-			}
-			if (leftSurface != null) {
-				Rectangle r = leftSurface.getBounds();
-				xCoord2 = r.getX()+r.getWidth();
-			}
+		public void draw(Graphics g, ImageObserver io)
+		{
+			super.draw(g, io);
+			g.drawRect(50,00,100,50);
+			g.drawRect(50,00,hp,50);
+			
+			g.setColor(Color.RED);
+			g.fillRect(50,0,hp,50);
 		}
-
-
-		if (Math.abs(xVelocity) < .2)
-			xVelocity = 0;
-
-		moveToLocation(xCoord2,yCoord2);
-
 	}
 
 
-}
