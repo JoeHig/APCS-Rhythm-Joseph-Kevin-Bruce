@@ -1,6 +1,5 @@
 package main;
 
-
 import javax.swing.*;
 import rhythm.BattlePanel;
 import rpg.GameWonPanel;
@@ -44,6 +43,13 @@ public class RGMain extends JFrame {
 		RGMain w = new RGMain("Rhythm World");
 	}
 
+	public void restartBattlePanel2() {
+		cardPanel.remove(1);
+		panel2 = new BattlePanel(this);
+		cardPanel.add(panel2,"2");
+		
+	}
+
 	public void changePanel(String name, boolean isWin) {
 		isInWorld = !isInWorld;
 		if (isWin) {
@@ -54,6 +60,7 @@ public class RGMain extends JFrame {
 			this.addKeyListener(panel1);
 		} else {
 			this.removeKeyListener(panel1);
+			restartBattlePanel2();
 			this.addKeyListener(panel2);
 		}
 

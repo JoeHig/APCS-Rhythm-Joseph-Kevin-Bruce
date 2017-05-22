@@ -13,15 +13,9 @@ import main.RGMain;
 import java.util.*;
 
 public class BattlePanel extends JPanel implements Runnable, KeyListener, ActionListener {
-	public static final int DRAWING_WIDTH = 650;
-	public static final int DRAWING_HEIGHT = 650;
+	public static final int DRAWING_WIDTH = 800;
+	public static final int DRAWING_HEIGHT = 800;
 
-	private Rectangle screenRect;
-
-	// private BattlePlayer scrub;
-	private ArrayList<Shape> obstacles;
-
-	// private KeyHandler keyControl;
 	private RGMain window;
 	private Song s;
 	private JPanel p1;
@@ -37,16 +31,13 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		super();
 		this.window = w;
 		p1 = new JPanel();
-		p1.setBounds(0, 0, 800, 800);
+		p1.setBounds(0, 0, DRAWING_WIDTH, DRAWING_HEIGHT);
 		s = new Song(p1);
 		add(p1);
 		ogre = new Monster("ogre.gif", 600, 0, 50, 50);
 		player = new BattlePlayer("player.png", 0, 0, 50, 50);
-		// keyControl = new KeyHandler();
 		setBackground(Color.WHITE);
-
-		// spawnNewMario();
-		// new Thread(this).start();
+		new Thread(this).start();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -82,7 +73,6 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		if (attack.isEmpty()) {
 			s.stopSong();
 			switchToWorld();
-			//new BattlePanel(window);
 		}
 	}
 
@@ -104,7 +94,6 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		for (Attack f : attack) {
 			inBeat = (inBeat || f.intersects(0, 50, 30, 800));
 		}
-		System.out.println(inBeat);
 		return inBeat;
 	}
 
@@ -118,7 +107,6 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		}
 		while (attack.contains(null)) {
 			attack.remove(null);
-			System.out.println("remove null");
 		}
 
 	}
@@ -126,17 +114,16 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	public void switchToWorld() {
 		s.stopSong();
 		window.changePanel("1", false);
+;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			if (checkBeat())
-			{
+			if (checkBeat()) {
 				ogre.removeHealth(50);
 				attack.remove(0);
-			}
-			else
+			} else
 				player.removeHealth(50);
 		}
 
