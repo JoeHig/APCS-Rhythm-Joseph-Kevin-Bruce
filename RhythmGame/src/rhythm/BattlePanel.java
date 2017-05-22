@@ -24,6 +24,8 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	private Monster ogre;
 	private BattlePlayer player;
 	Attack att = new Attack("FireBall.png", 500, 500, 50, 50);
+	Attack att1 = new Attack("FireBall.png", 2000, 500, 50, 50);
+
 	Timer timer = new Timer(1, this);
 	Graphics2D g2;
 
@@ -66,7 +68,7 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		}
 		checkArrayList();
 		draw(g2);
-		update(g2);
+		update();
 	}
 
 	private void checkArrayList() {
@@ -79,6 +81,8 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	private void initializeAttack() {
 		// this is where file IO comes
 		attack.add(att);
+		attack.add(att1);
+
 	}
 
 	private void draw(Graphics2D g) {
@@ -97,10 +101,25 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		return inBeat;
 	}
 
-	private void update(Graphics2D g) {
+	private void update() {
 		int n = 0;
 		for (Attack f : attack) {
-			if (f.update(g)) {
+			if (f.update()) {
+				attack.set(n, null);
+			}
+			n++;
+		}
+		while (attack.contains(null)) {
+			attack.remove(null);
+		}
+
+	}
+	
+
+	private void updateBeat() {
+		int n = 0;
+		for (Attack f : attack) {
+			if (f.updateBeat()) {
 				attack.set(n, null);
 			}
 			n++;
@@ -114,7 +133,6 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	public void switchToWorld() {
 		s.stopSong();
 		window.changePanel("1", false);
-;
 	}
 
 	@Override
@@ -122,9 +140,15 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (checkBeat()) {
 				ogre.removeHealth(50);
-				attack.remove(0);
-			} else
+				updateBeat();
+				if(ogre.hp<=0)
+				{
+					switchToWorld();
+				}
+			} else{
 				player.removeHealth(50);
+			}
+			
 		}
 
 	}

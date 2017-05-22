@@ -7,36 +7,39 @@ import java.awt.image.ImageObserver;
 
 import main.MovingImage;
 
-public class Attack extends MovingImage{
+public class Attack extends MovingImage {
 
-	private int x,y,vel=-1;
+	private int x, y, vel = -1;
 
 	public Attack(String file, int x, int y, int w, int h) {
-		super("resources" + System.getProperty("file.separator")+file, x, y, w, h);
-		
+		super("resources" + System.getProperty("file.separator") + file, x, y, w, h);
+
 	}
+
 	@Override
-	public void draw(Graphics g, ImageObserver io)
-	{
+	public void draw(Graphics g, ImageObserver io) {
 		super.draw(g, io);
 	}
-	public boolean update(Graphics g)
-	{
-		moveByAmount(-1,0);
-		System.out.println(super.getX()+" "+super.getY());
-		if(super.getX()<-super.width)
-		{
+
+	public boolean update() {
+		moveByAmount(-1, 0);
+		if (super.getX() < -super.width) {
 			return true;
-		}
-		else 
+		} else
 			return false;
-		
+
 	}
-	public boolean checkLocation(int x, int y)
+	public boolean updateBeat()
 	{
+		if (super.getX() < -super.width) {
+			return true;
+		} else
+			return false;
+
+	}
+
+	public boolean checkLocation(int x, int y) {
 		return true;
 	}
-	
 
-	
 }

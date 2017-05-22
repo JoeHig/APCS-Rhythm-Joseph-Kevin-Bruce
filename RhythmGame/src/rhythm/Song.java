@@ -50,7 +50,10 @@ public class Song implements JayLayerListener {
 	}
 
 	public void start() {
+		
 		sound.nextSong();
+		System.out.print(sound.isPlaying());
+		
 	}
 
 	@Override

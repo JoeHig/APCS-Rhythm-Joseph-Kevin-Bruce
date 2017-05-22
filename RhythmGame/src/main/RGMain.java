@@ -47,8 +47,13 @@ public class RGMain extends JFrame {
 		cardPanel.remove(1);
 		panel2 = new BattlePanel(this);
 		cardPanel.add(panel2,"2");
-		
 	}
+	public void restartWorldPanel2() {
+		cardPanel.remove(0);
+		panel1 = new WorldPanel(this);
+		cardPanel.add(panel1,"1");
+	}
+	
 
 	public void changePanel(String name, boolean isWin) {
 		isInWorld = !isInWorld;
