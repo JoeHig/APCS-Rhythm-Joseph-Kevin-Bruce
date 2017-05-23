@@ -72,12 +72,17 @@ public class WorldPanel extends JPanel implements Runnable, KeyListener {
 			}
 		}
 	}
-
+	/**
+	 * Switches cardLayout to battle
+	 */
 	public void switchToBattle() {
 		window.changePanel("2", false);
 		window.addKeyListenerPanel2();
 	}
 
+	/**
+	 * Switches cardLayout to WinLayout
+	 */
 	public void switchToWin() {
 		window.changePanel("3", true);
 	}

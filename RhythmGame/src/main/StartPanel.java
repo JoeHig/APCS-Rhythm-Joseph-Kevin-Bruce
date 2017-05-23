@@ -20,6 +20,10 @@ public class StartPanel extends JPanel implements ActionListener {
 			800, 800);
 	private JPanel p1;
 
+	/**
+	 * panel where the main screen is created
+	 * @param w
+	 */
 	public StartPanel(RGMain w) {
 		super();
 		this.window = w;
@@ -33,7 +37,9 @@ public class StartPanel extends JPanel implements ActionListener {
 
 
 	}
-
+	/**
+	 * draws using graphics
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // Call JPanel's paintComponent method to paint
 									// the background
@@ -49,11 +55,11 @@ public class StartPanel extends JPanel implements ActionListener {
 		
 		
 
-		//img.draw(g, this);
+		img.draw(g, this);
 		
 	}
 	/**
-	 * Changes panel 
+	 * Changes cardLayout to world
 	 */
 	public void switchToWorld() {
 		window.restartWorldPanel1();
