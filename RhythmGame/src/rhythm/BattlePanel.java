@@ -106,6 +106,7 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		for (Attack f : attack) {
 			if (f.update()) {
 				attack.set(n, null);
+				player.removeHealth(10);
 			}
 			n++;
 		}
@@ -132,26 +133,32 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 
 	public void switchToWorld() {
 		s.stopSong();
-		window.changePanel("1", false);
+		window.changePanel("1", false,false);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (checkBeat()) {
-				ogre.removeHealth(50);
+				ogre.removeHealth(10);
 				updateBeat();
+				System.out.println("inBeat");
 				if(ogre.hp<=0)
 				{
-					switchToWorld();
+
 				}
 			} else{
-				player.removeHealth(50);
+				player.removeHealth(10);
+				if(player.hp<=0)
+				{
+					
+				}
 			}
 			
 		}
 
 	}
+
 
 	@Override
 	public void keyReleased(KeyEvent e) {

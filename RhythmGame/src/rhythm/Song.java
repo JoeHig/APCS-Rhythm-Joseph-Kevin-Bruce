@@ -31,7 +31,7 @@ public class Song implements JayLayerListener {
 		p0.setBackground(Color.WHITE);
 
 		//String[] soundEffects = new String[] { "title1.mp3", "title2.mp3", "title3.mp3", "title4.mp3", "title5.mp3" };
-		String[] songs = new String[] { "game1.mp3", "game2.mp3", "game3.mp3", "game4.mp3", "game5.mp3" };
+		String[] songs = new String[] { "game1.mp3", "game2.mp3", "game3.mp3", "game4.mp3" };
 
 		//effects = new JComboBox<String>(soundEffects);
 
