@@ -1,10 +1,7 @@
 package rhythm;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
-import java.util.*;
-import main.MovingImage;
 
 public class BattlePlayer extends Actable {
 

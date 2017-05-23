@@ -16,7 +16,7 @@ public class StartPanel extends JPanel implements ActionListener {
 	public static final int DRAWING_WIDTH = 800;
 	public static final int DRAWING_HEIGHT = 800;
 	private Graphics2D g2;
-	private MovingImage img = new MovingImage("resources" + System.getProperty("file.separator") + "MainScreen", 0, 0,
+	private MovingImage img = new MovingImage("resources" + System.getProperty("file.separator") + "MainScreen.jpg", 0, 0,
 			800, 800);
 	private JPanel p1;
 

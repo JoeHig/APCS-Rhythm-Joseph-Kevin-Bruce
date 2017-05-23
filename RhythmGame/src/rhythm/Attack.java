@@ -1,15 +1,11 @@
 package rhythm;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.image.ImageObserver;
 
 import main.MovingImage;
 
 public class Attack extends MovingImage {
-
-	private int x, y, vel = -1;
 
 	/**
 	 * Creates MovingImage
