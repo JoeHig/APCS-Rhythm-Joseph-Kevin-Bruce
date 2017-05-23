@@ -35,7 +35,6 @@ public class World {
 				if (world[i][j].getTileType() == worldPlayer.getTileType()) {
 					xWorld = i;
 					yWorld = j;
-
 				}
 			}
 		}

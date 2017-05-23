@@ -74,12 +74,12 @@ public class WorldPanel extends JPanel implements Runnable, KeyListener {
 	}
 
 	public void switchToBattle() {
-		window.changePanel("2", false,false);
+		window.changePanel("2", false);
 		window.addKeyListenerPanel2();
 	}
 
 	public void switchToWin() {
-		window.changePanel("3", true,false);
+		window.changePanel("3", true);
 	}
 
 	@Override

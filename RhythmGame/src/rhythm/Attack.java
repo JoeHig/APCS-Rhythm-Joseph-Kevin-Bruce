@@ -29,17 +29,13 @@ public class Attack extends MovingImage {
 			return false;
 
 	}
-	public boolean updateBeat()
-	{
+
+	public boolean updateBeat() {
 		if (super.getX() < -super.width) {
 			return true;
 		} else
 			return false;
 
-	}
-
-	public boolean checkLocation(int x, int y) {
-		return true;
 	}
 
 }

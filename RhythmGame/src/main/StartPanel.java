@@ -52,9 +52,12 @@ public class StartPanel extends JPanel implements ActionListener {
 		//img.draw(g, this);
 		
 	}
+	/**
+	 * Changes panel 
+	 */
 	public void switchToWorld() {
 		window.restartWorldPanel1();
-		window.changePanel("1", false,false);
+		window.changePanel("1", false);
 		window.addKeyListenerPanel1();
 
 	}

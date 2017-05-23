@@ -3,6 +3,11 @@ package rhythm;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.swing.*;
 import javax.swing.Timer;
 
@@ -23,12 +28,14 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	private boolean once = true, inBeat = false;
 	private Monster ogre;
 	private BattlePlayer player;
-	Attack att = new Attack("FireBall.png", 500, 500, 50, 50);
-	Attack att1 = new Attack("FireBall.png", 2000, 500, 50, 50);
+	private Timer timer = new Timer(1, this);
+	private Graphics2D g2;
 
-	Timer timer = new Timer(1, this);
-	Graphics2D g2;
-
+	/**
+	 * Initializes song, creates the player and enemy
+	 * 
+	 * @param w
+	 */
 	public BattlePanel(RGMain w) {
 		super();
 		this.window = w;
@@ -42,46 +49,57 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		new Thread(this).start();
 	}
 
+	/**
+	 * draws background such as health in the background
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); // Call JPanel's paintComponent method to paint
 									// the background
 		int width = getWidth();
 		int height = getHeight();
-		g2 = (Graphics2D) g;
 		double ratioX = (double) width / DRAWING_WIDTH;
 		double ratioY = (double) height / DRAWING_HEIGHT;
+		g2 = (Graphics2D) g;
 		g2.scale(ratioX, ratioY);
 		g.setColor(new Color(205, 102, 29));
-		AffineTransform at = g2.getTransform();
-		g2.setTransform(at);
 		g2.drawRect(0, 50, 30, 800);
 		g2.drawRect(0, 50, 800, 0);
 		ogre.draw(g, this);
 		player.draw(g, this);
 
-		if (once) {
-			initializeAttack();
-			draw(g2);
-			s.start();
-			timer.start();
-			once = false;
-		}
+		initializeOnce();
 		checkArrayList();
 		draw(g2);
 		update();
 	}
 
+	/**
+	 * Initializes things such as timer and song, only once
+	 */
+	public void initializeOnce() {
+		if (once) {
+			initializeAttack();
+			s.start();
+			timer.start();
+			once = false;
+		}
+	}
+
+	/**
+	 * Checks if attack is empty, then song stops, panel is switched
+	 */
 	private void checkArrayList() {
 		if (attack.isEmpty()) {
-			s.stopSong();
 			switchToWorld();
 		}
 	}
 
+	/**
+	 * Reads from file called "resources/Attack.txt" and initializes all attack
+	 * objects into an ArrayList called attack
+	 */
 	private void initializeAttack() {
-		// this is where file IO comes
-		attack.add(att);
-		attack.add(att1);
+		readData("resources/Attack.txt");
 
 	}
 
@@ -93,14 +111,35 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 
 	}
 
+	/**
+	 * Checks if the player's input is off of an attack, or if input was on an
+	 * attack. removes
+	 * 
+	 * @return true if there was an attack, false if not
+	 */
 	private boolean checkBeat() {
 		inBeat = false;
+		int n = 0;
 		for (Attack f : attack) {
+
 			inBeat = (inBeat || f.intersects(0, 50, 30, 800));
+
+			if (f.intersects(0, 50, 30, 800)) {
+				attack.set(n, null);
+			}
+
+		}
+		while (attack.contains(null)) {
+			attack.remove(null);
 		}
 		return inBeat;
 	}
 
+	/**
+	 * Checks if any Attacks gotten past the player. Deals 10 damage if so.
+	 * Removes all attacks that went past the border
+	 * 
+	 */
 	private void update() {
 		int n = 0;
 		for (Attack f : attack) {
@@ -115,25 +154,50 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		}
 
 	}
-	
 
-	private void updateBeat() {
-		int n = 0;
-		for (Attack f : attack) {
-			if (f.updateBeat()) {
-				attack.set(n, null);
-			}
-			n++;
-		}
-		while (attack.contains(null)) {
-			attack.remove(null);
-		}
-
-	}
-
+	/**
+	 * switches cardlayout to world.Also stops music
+	 */
 	public void switchToWorld() {
 		s.stopSong();
-		window.changePanel("1", false,false);
+		window.changePanel("1", false);
+	}
+
+	/**
+	 * adds all of the attack objects into the arrayList attack;
+	 * 
+	 * @param fileName
+	 *            Where the file is located
+	 */
+	private void readData(String fileName) {
+		File dataFile = new File(fileName);
+
+		if (dataFile.exists()) {
+
+			FileReader reader = null;
+			BufferedReader bReader = null;
+			try {
+				reader = new FileReader(dataFile);
+				bReader = new BufferedReader(reader);
+
+				String s;
+				while ((s = bReader.readLine()) != null) {
+					attack.add(new Attack("FireBall.png", Integer.parseInt(s), 500, 50, 50));
+				}
+			} catch (NumberFormatException ex) {
+				System.out.println("File is in the wrong format.");
+
+			} catch (IOException ex) {
+				System.out.println("File cannot be read.");
+				ex.printStackTrace();
+			} finally {
+				try {
+					bReader.close();
+				} catch (IOException ex) {
+					System.out.println("File cannot be closed.");
+				}
+			}
+		}
 	}
 
 	@Override
@@ -141,24 +205,19 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (checkBeat()) {
 				ogre.removeHealth(10);
-				updateBeat();
-				System.out.println("inBeat");
-				if(ogre.hp<=0)
-				{
+				if (ogre.hp <= 0) {
+					switchToWorld();
+				}
+			} else {
+				player.removeHealth(10);
+				if (player.hp <= 0) {
 
 				}
-			} else{
-				player.removeHealth(10);
-				if(player.hp<=0)
-				{
-					
-				}
 			}
-			
+
 		}
 
 	}
-
 
 	@Override
 	public void keyReleased(KeyEvent e) {

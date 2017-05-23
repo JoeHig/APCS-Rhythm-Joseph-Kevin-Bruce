@@ -31,8 +31,8 @@ public class GameWonPanel extends JPanel implements Runnable {
 	}
 
 	/**
-	 * Draws this panel which is screen that tells the user that they have won the game using
-	 * graphics
+	 * Draws this panel which is screen that tells the user that they have won
+	 * the game using graphics
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

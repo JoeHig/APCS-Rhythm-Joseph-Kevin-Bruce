@@ -22,8 +22,11 @@ public class Song implements JayLayerListener {
 	String[] soundEffects = new String[] { "title1.mp3", "title2.mp3", "title3.mp3", "title4.mp3", "title5.mp3" };
 	private JComboBox<String> effects;
 	private JayLayer sound;
-	private long position;
 
+	/**
+	 * Creates a song list
+	 * @param p0 Jpanel from 
+	 */
 	public Song(JPanel p0) {
 		super();
 
@@ -35,22 +38,20 @@ public class Song implements JayLayerListener {
 
 		//effects = new JComboBox<String>(soundEffects);
 
+		
 		sound = new JayLayer("resources/", "resources/", false);
 		sound.addPlayList();
 		sound.addSongs(0, songs);
 		//sound.addSoundEffects(soundEffects);
 		sound.changePlayList(0);
 		sound.addJayLayerListener(this);
-
-
-	}
-
-	public long songPostion() {
-		return position;
-	}
-
-	public void start() {
 		
+
+	}
+	/**
+	 * adds music 
+	 */
+	public void start() {
 		sound.nextSong();
 		System.out.print(sound.isPlaying());
 		
@@ -77,6 +78,9 @@ public class Song implements JayLayerListener {
 	public void musicStopped() {
 	}
 
+	/**
+	 * removes music
+	 */
 	public void stopSong() {
 		sound.stopSong();
 	}

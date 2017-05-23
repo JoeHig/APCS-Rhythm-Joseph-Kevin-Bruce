@@ -67,19 +67,16 @@ public class RGMain extends JFrame {
 	
 	
 
-	public void changePanel(String name, boolean isWin,boolean isLost) {
+	public void changePanel(String name, boolean isWin) {
 		isInWorld = !isInWorld;
 		if (isWin) {
 			this.removeKeyListener(panel1);
 			this.removeKeyListener(panel2);
 		} else if (isInWorld) {
-			//this.removeKeyListener(panel2);
-			System.out.println("remove panel2");
 			this.addKeyListener(panel1);
 		} else {
 			this.removeKeyListener(panel1);
 			restartBattlePanel2();
-			System.out.println("add panel2");
 
 			
 			
