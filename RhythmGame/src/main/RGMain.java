@@ -57,7 +57,6 @@ public class RGMain extends JFrame {
 	public void	addKeyListenerPanel2()
 	{
 		this.addKeyListener(panel2);
-		System.out.println("x");
 	}
 	public void restartWorldPanel1() {
 		cardPanel.remove(2);

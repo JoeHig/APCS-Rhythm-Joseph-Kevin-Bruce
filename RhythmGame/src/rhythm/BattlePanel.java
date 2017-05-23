@@ -73,7 +73,7 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	}
 
 	/**
-	 * Initializes things such as timer and song, only once
+	 * Initializes things such as attack only once
 	 */
 	public void initializeOnce() {
 		if (once) {
@@ -81,7 +81,9 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 			once = false;
 		}
 	}
-
+	/**
+	 * Initializes TimerSong
+	 */
 	public void TimeSong() {
 		if (once1) {
 			s.start();
