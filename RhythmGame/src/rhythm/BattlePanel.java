@@ -24,7 +24,7 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	private Song s;
 	private JPanel p1;
 	private ArrayList<Attack> attack = new ArrayList<Attack>();
-	private boolean once = true, inBeat = false;
+	private boolean once = true, once1 = true, inBeat = false;
 	private Monster ogre;
 	private BattlePlayer player;
 	private Timer timer = new Timer(1, this);
@@ -65,10 +65,10 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 		g2.drawRect(0, 50, 800, 0);
 		ogre.draw(g, this);
 		player.draw(g, this);
-
 		initializeOnce();
-		checkArrayList();
 		draw(g2);
+		TimeSong();
+		checkArrayList();
 		update();
 	}
 
@@ -78,9 +78,15 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	public void initializeOnce() {
 		if (once) {
 			initializeAttack();
+			once = false;
+		}
+	}
+
+	public void TimeSong() {
+		if (once1) {
 			s.start();
 			timer.start();
-			once = false;
+			once1=false;
 		}
 	}
 
@@ -203,14 +209,14 @@ public class BattlePanel extends JPanel implements Runnable, KeyListener, Action
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
 			if (checkBeat()) {
-				ogre.removeHealth(10);
+				ogre.removeHealth(8);
 				if (ogre.hp <= 0) {
 					switchToWorld();
 				}
 			} else {
 				player.removeHealth(10);
 				if (player.hp <= 0) {
-
+					switchToWorld();
 				}
 			}
 

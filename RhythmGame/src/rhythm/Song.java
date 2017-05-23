@@ -12,7 +12,6 @@ public class Song implements JayLayerListener {
 
 	String[] songs = new String[] { "game1.mp3", "game2.mp3", "game3.mp3", "game4.mp3", "game5.mp3" };
 	String[] soundEffects = new String[] { "title1.mp3", "title2.mp3", "title3.mp3", "title4.mp3", "title5.mp3" };
-	private JComboBox<String> effects;
 	private JayLayer sound;
 
 	/**
@@ -24,7 +23,7 @@ public class Song implements JayLayerListener {
 	public Song(JPanel p0) {
 		super();
 
-		String[] songs = new String[] { "game3.mp3" };
+		String[] songs = new String[] { "game1.mp3"};
 
 		sound = new JayLayer("resources/", "resources/", false);
 		sound.addPlayList();
